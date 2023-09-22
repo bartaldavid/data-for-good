@@ -1,0 +1,10 @@
+{
+    "Nav": {
+        "home": "Főoldal",
+        "news": "Hírek",
+        "projects": "Projektek",
+        "teaching": "Oktatás",
+        "team": "Kutatócsoport",
+        "contact": "Kapcsolat"
+    }
+  }

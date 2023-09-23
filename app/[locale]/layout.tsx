@@ -4,6 +4,8 @@ import "../globals.css";
 
 const locales = ["en", "hu"];
 
+export const runtime = "edge";
+
 export default function LocaleLayout({
   children,
   params: { locale },

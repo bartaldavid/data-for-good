@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import { notFound } from "next/navigation";
 import "../globals.css";
+import { NextIntlClientProvider, useMessages } from "next-intl";
 
 const locales = ["en", "hu"];
 
@@ -15,10 +16,14 @@ export default function LocaleLayout({
   const isValidLocale = locales.some((cur) => cur === locale);
   if (!isValidLocale) notFound();
 
+  const messages = useMessages();
+
   return (
-    <html lang={"en"}>
+    <html lang={locale}>
       <body>
-        <Header />
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <Header />
+        </NextIntlClientProvider>
         <main>{children}</main>
       </body>
     </html>

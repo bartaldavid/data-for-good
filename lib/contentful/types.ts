@@ -20,7 +20,7 @@ export interface Researchers {
   };
 }
 
-export interface BlogPostEntry {
+export interface ProjectsEntry {
   contentTypeId: "projektek";
   fields: {
     title: EntryFieldTypes.Text;

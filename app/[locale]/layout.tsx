@@ -1,5 +1,4 @@
 import Header from "@/components/Header";
-import { useLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import "../globals.css";
 
@@ -17,10 +16,10 @@ export default function LocaleLayout({
   if (!isValidLocale) notFound();
 
   return (
-    <html lang={locale}>
+    <html lang={"en"}>
       <body>
         <Header />
-        {children}
+        <main>{children}</main>
       </body>
     </html>
   );

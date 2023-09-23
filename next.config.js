@@ -7,7 +7,14 @@ const withNextIntl = require("next-intl/plugin")(
 // const nextConfig = {};
 
 module.exports = withNextIntl({
-  experimental: {
-    typedRoutes: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.ctfassets.net",
+        port: "",
+        pathname: "/oego37nzuu1n/**",
+      },
+    ],
   },
 });

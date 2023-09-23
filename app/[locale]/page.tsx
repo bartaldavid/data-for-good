@@ -1,18 +1,21 @@
-import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { getSiteDetails } from "@/lib/contentful/setup";
 import { useLocale, useTranslations } from "next-intl";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { Locale } from "@/constants";
 
-export default async function Index() {
-  const t = useTranslations("Nav");
-  const locale = useLocale();
-  const data = await getSiteDetails(locale as Locale);
+export default async function Index({
+  params,
+}: {
+  params: { locale: string };
+}) {
+  const data = await getSiteDetails(params.locale);
 
   return (
     <>
-      <h1>{t("home")}</h1>
-      <div>{documentToReactComponents(data.fields.shortDescription)}</div>
+      <article className="max-w-prose mx-auto text-center mt-14">
+        <h1 className="text-5xl font-bold mb-4">Data for Good</h1>
+        {documentToReactComponents(data.fields.shortDescription)}
+      </article>
     </>
   );
 }

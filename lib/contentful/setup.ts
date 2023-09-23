@@ -1,8 +1,8 @@
-import contentful, { type EntryFieldTypes } from "contentful";
-import { AboutUsEntry, Researchers } from "./types";
+import { type EntryFieldTypes, createClient } from "contentful";
+import { AboutUsEntry, NewsEntry, ProjectsEntry, Researchers } from "./types";
 import { Locale } from "@/constants";
 
-export const contentfulClient = contentful.createClient({
+const contentfulClient = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
   accessToken: process.env.DEV
     ? process.env.CONTENTFUL_PREVIEW_TOKEN
@@ -10,18 +10,47 @@ export const contentfulClient = contentful.createClient({
   host: process.env.DEV ? "preview.contentful.com" : "cdn.contentful.com",
 });
 
-export async function getSiteDetails(lang: Locale) {
+export async function getSiteDetails(locale: string) {
   const data = await contentfulClient.getEntry<AboutUsEntry>(
     "78xlLscGbAXaUEcs8IrbkF",
-    { locale: lang }
+    { locale }
   );
   return data;
 }
 
-export async function getResearchers(lang: Locale) {
+export async function getResearchers(locale: string) {
   const data = await contentfulClient.getEntries<Researchers>({
     content_type: "kutatok",
-    locale: lang,
+    locale,
   });
   return data;
+}
+
+export async function getResearcherBySlug(slug: string, locale: string) {
+  const data = await contentfulClient.getEntries<Researchers>({
+    content_type: "kutatok",
+    locale,
+    "fields.slug": slug,
+  });
+  return data["items"][0];
+}
+
+export async function getAsset(id: string) {
+  return await contentfulClient.getAsset(id);
+}
+
+export async function getProjects(lang: string, slug?: string) {
+  return await contentfulClient.getEntries<ProjectsEntry>({
+    content_type: "projektek",
+    locale: lang,
+    ...(slug && { "fields.slug": slug }),
+  });
+}
+
+export async function getNews(lang: string, slug?: string) {
+  return await contentfulClient.getEntries<NewsEntry>({
+    content_type: "news",
+    locale: lang,
+    ...(slug && { "fields.slug": slug }),
+  });
 }

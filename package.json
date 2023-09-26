@@ -10,15 +10,15 @@
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.17.2",
-    "@types/node": "20.6.4",
+    "@types/node": "20.7.0",
     "@types/react": "18.2.22",
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.16",
     "contentful": "^10.5.2",
     "eslint": "8.50.0",
-    "eslint-config-next": "13.5.2",
-    "next": "13.5.2",
-    "next-intl": "3.0.0-beta.19",
+    "eslint-config-next": "13.5.3",
+    "next": "13.5.3",
+    "next-intl": "2.20.2",
     "postcss": "8.4.30",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -27,6 +27,6 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",
-    "cf-content-types-generator": "^2.12.8"
+    "cf-content-types-generator": "^2.12.9"
   }
 }

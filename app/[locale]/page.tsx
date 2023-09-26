@@ -2,7 +2,8 @@ import { getSiteDetails } from "@/lib/contentful/setup";
 import { useLocale, useTranslations } from "next-intl";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { Locale } from "@/constants";
-
+import Image from "next/image";
+import Logo from '@/public/logo.jpg'
 export default async function Index({
   params,
 }: {
@@ -13,7 +14,7 @@ export default async function Index({
   return (
     <>
       <article className="max-w-prose mx-auto text-center mt-14">
-        <h1 className="text-5xl font-bold mb-4">Data for Good</h1>
+        <Image src={Logo} alt="logo"/>
         {documentToReactComponents(data.fields.shortDescription)}
       </article>
     </>

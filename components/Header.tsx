@@ -5,6 +5,9 @@ import LanguageSwitcher from "./LanguageSwitcher";
 import { NavLink } from "./NavLink";
 import { SITE_TITLE } from "@/constants";
 
+import Image from "next/image";
+import logo from '@/public/logo.jpg'
+
 export default function Header() {
   const t = useTranslations("Nav");
   const [isOpen, setIsOpen] = useState(false);
@@ -14,7 +17,7 @@ export default function Header() {
       <nav className="flex max-w-screen-xl mx-auto flex-wrap justify-between p-2 w-full">
         {/* <div className="flex items-center w-full justify-between"> */}
         <a href="/" className="order-1 self-center font-bold">
-          {SITE_TITLE}
+          <Image src={logo} alt="logo" height={30} />
         </a>
 
         <div className="flex flex-row gap-1 order-2 sm:order-3">

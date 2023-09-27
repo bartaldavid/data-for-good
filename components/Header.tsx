@@ -3,10 +3,9 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { NavLink } from "./NavLink";
-import { SITE_TITLE } from "@/constants";
 
 import Image from "next/image";
-import logo from '@/public/logo.jpg'
+import logo from "@/public/logo/08.svg";
 
 export default function Header() {
   const t = useTranslations("Nav");

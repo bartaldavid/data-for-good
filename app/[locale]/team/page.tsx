@@ -2,8 +2,18 @@ import CollectionPage from "@/components/CollectionPage";
 import ProfilePicture from "@/components/ProfilePicture";
 import { getResearchers, getSiteDetails } from "@/lib/contentful/setup";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { useLocale, useTranslations } from "next-intl";
+import { ResolvingMetadata } from "next";
+import { useLocale } from "next-intl";
 import LinkWithRef from "next-intl/link";
+
+export async function generateMetadata(
+  { params }: { params: { locale: string } },
+  parent: ResolvingMetadata
+) {
+  const title = params?.locale === "hu" ? "Rólunk" : "Team";
+  const parentTitle = (await parent).title?.absolute || "";
+  return { title: `${title} | ${parentTitle}` };
+}
 
 async function TeamPage() {
   const locale = useLocale();

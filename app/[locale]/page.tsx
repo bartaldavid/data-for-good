@@ -3,7 +3,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { Locale } from "@/constants";
 import Image from "next/image";
-import Logo from "@/public/logo.jpg";
+import Logo from "@/public/logo/08.svg";
 export default async function Index({
   params,
 }: {

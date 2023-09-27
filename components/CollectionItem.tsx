@@ -18,7 +18,12 @@ function CollectionItem({
       href={href}
     >
       <h2 className="text-xl font-semibold mb-2">{title}</h2>
-      {date && <FormattedDate date={new Date(date)} />}
+      {date && (
+        <FormattedDate
+          date={new Date(date)}
+          className="text-sm font-light text-slate-600"
+        />
+      )}
     </LinkWithRef>
   );
 }

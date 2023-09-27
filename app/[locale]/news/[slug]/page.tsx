@@ -9,7 +9,13 @@ async function NewsPage({
 }) {
   const page = (await getNews(locale, slug))["items"][0];
   return (
-    <BlogPageLayout title={page.fields.title} pubDate={page.fields.pubDate}>
+    <BlogPageLayout
+      title={page.fields.title}
+      pubDate={page.fields.publishedAt}
+      subtitle={
+        page.fields.subtitle && documentToReactComponents(page.fields.subtitle)
+      }
+    >
       {page.fields.content && documentToReactComponents(page.fields.content)}
     </BlogPageLayout>
   );

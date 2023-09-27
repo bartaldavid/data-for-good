@@ -36,7 +36,7 @@ export interface NewsEntry {
     title: EntryFieldTypes.Text;
     content?: EntryFieldTypes.RichText;
     subtitle?: EntryFieldTypes.RichText;
-    pubDate?: EntryFieldTypes.Date;
+    publishedAt?: EntryFieldTypes.Date;
     slug: EntryFieldTypes.Text;
   };
 }

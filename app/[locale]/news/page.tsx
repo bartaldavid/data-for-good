@@ -23,7 +23,7 @@ async function NewsCollectionPage({
       {items.map((newsItem) => (
         <CollectionItem
           title={newsItem.fields.title}
-          date={newsItem.fields.pubDate}
+          date={newsItem.fields.publishedAt}
           href={`news/${newsItem.fields.slug}`}
           key={newsItem.fields.slug}
         />

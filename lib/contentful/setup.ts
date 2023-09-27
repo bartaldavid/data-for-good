@@ -18,21 +18,13 @@ export async function getSiteDetails(locale: string) {
   return data;
 }
 
-export async function getResearchers(locale: string) {
+export async function getResearchers(locale: string, slug?: string) {
   const data = await contentfulClient.getEntries<Researchers>({
     content_type: "kutatok",
     locale,
+    ...(slug && { "fields.slug": slug }),
   });
   return data;
-}
-
-export async function getResearcherBySlug(slug: string, locale: string) {
-  const data = await contentfulClient.getEntries<Researchers>({
-    content_type: "kutatok",
-    locale,
-    "fields.slug": slug,
-  });
-  return data["items"][0];
 }
 
 export async function getAsset(id: string) {

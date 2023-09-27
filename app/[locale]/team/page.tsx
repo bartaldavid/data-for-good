@@ -14,7 +14,7 @@ async function TeamPage() {
   return (
     <CollectionPage titleId="team">
       <div className="prose max-w-prose">
-        {documentToReactComponents(longDescription)}
+        {longDescription && documentToReactComponents(longDescription)}
       </div>
       {researchers.items.map((researcher) => (
         <LinkWithRef
@@ -22,11 +22,13 @@ async function TeamPage() {
           href={`/team/${researcher.fields.slug}`}
           key={researcher.fields.slug}
         >
-          <ProfilePicture
-            imageId={researcher.fields.profilePicture.sys.id}
-            name={researcher.fields.name}
-            size={70}
-          />
+          {researcher.fields.profilePicture && (
+            <ProfilePicture
+              imageId={researcher.fields.profilePicture.sys.id}
+              name={researcher.fields.name}
+              size={70}
+            />
+          )}
           <h2 className="text-xl font-semibold mb-2">
             {researcher.fields.name}
           </h2>

@@ -8,7 +8,8 @@ async function SingleProjectPage({ params }: { params: { slug: string } }) {
   const project = (await getProjects(locale, params.slug))["items"][0];
   return (
     <BlogPageLayout title={project.fields.title} pubDate={project.fields.date}>
-      {documentToReactComponents(project.fields.content)}
+      {project.fields.content &&
+        documentToReactComponents(project.fields.content)}
     </BlogPageLayout>
   );
 }

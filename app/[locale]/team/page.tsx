@@ -1,5 +1,6 @@
 import CollectionPage from "@/components/CollectionPage";
 import ProfilePicture from "@/components/ProfilePicture";
+import ResearcherCard from "@/components/ResearcherCard";
 import { getResearchers, getSiteDetails } from "@/lib/contentful/setup";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { ResolvingMetadata } from "next";
@@ -26,24 +27,17 @@ async function TeamPage() {
       <div className="prose max-w-prose">
         {longDescription && documentToReactComponents(longDescription)}
       </div>
-      {researchers.items.map((researcher) => (
-        <LinkWithRef
-          className="bg-white rounded-lg p-4 shadow-sm w-full md:w-1/3 hover:shadow-md flex gap-2 items-center "
-          href={`/team/${researcher.fields.slug}`}
-          key={researcher.fields.slug}
-        >
-          {researcher.fields.profilePicture && (
-            <ProfilePicture
-              imageId={researcher.fields.profilePicture.sys.id}
-              name={researcher.fields.name}
-              size={70}
-            />
-          )}
-          <h2 className="text-xl font-semibold mb-2">
-            {researcher.fields.name}
-          </h2>
-        </LinkWithRef>
-      ))}
+      <h1 className="text-2xl">Kutatók</h1>
+      <div className="flex flex-row flex-wrap gap-2 max-w-2xl">
+        {researchers.items.map((researcher) => (
+          <ResearcherCard
+            href={`/team/${researcher.fields.slug}`}
+            name={researcher.fields.name}
+            imageId={researcher.fields.profilePicture?.sys.id}
+            key={researcher.fields.slug}
+          />
+        ))}
+      </div>
     </CollectionPage>
   );
 }

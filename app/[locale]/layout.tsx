@@ -24,7 +24,7 @@ export default function LocaleLayout({
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Header />
         </NextIntlClientProvider>
-        <main>{children}</main>
+        <main className="mb-20">{children}</main>
       </body>
     </html>
   );

@@ -6,5 +6,8 @@
         "teaching": "Teaching",
         "team": "Team",
         "contact": "Contact us"
+    },
+    "Index": {
+        "goToLongerDescription": "Go to longer description"
     }
 }

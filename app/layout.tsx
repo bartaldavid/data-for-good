@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang={"en"}>
+    <html lang={"hu"}>
       <body>{children}</body>
     </html>
   );

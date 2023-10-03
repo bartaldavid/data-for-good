@@ -1,23 +1,31 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { NavLink } from "./NavLink";
 
 import Image from "next/image";
-import logo from "@/public/logo/08.svg";
+import logo from "@/public/logo/08-crop.svg";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
-  const t = useTranslations("Nav");
   const [isOpen, setIsOpen] = useState(false);
+  const path = usePathname();
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [path]);
 
   return (
     <header className="bg-slate-50">
       <nav className="flex max-w-screen-xl mx-auto flex-wrap justify-between p-2 w-full">
         {/* <div className="flex items-center w-full justify-between"> */}
-        <a href="/" className="order-1 self-center font-bold">
-          <Image src={logo} alt="logo" height={30} />
-        </a>
+        <div className="flex gap-4">
+          <a href="/" className="order-1 self-center">
+            <Image src={logo} alt="logo" height={30} />
+          </a>
+          <NavItemsList className="hidden sm:flex" />
+        </div>
 
         <div className="flex flex-row gap-1 order-2 sm:order-3">
           <LanguageSwitcher />
@@ -46,22 +54,25 @@ export default function Header() {
             </svg>
           </button>
         </div>
-        {/* </div> */}
-
-        <div
-          className={`sm:block sm:items-center order-3 sm:order-2 w-full sm:w-auto ${
-            isOpen ? "block" : "hidden"
-          }`}
-          id="navbar-default"
-        >
-          <div className="flex flex-col sm:flex-row sm:gap-2">
-            <NavLink href="/news" label={t("news")} />
-            <NavLink href="/projects" label={t("projects")} />
-            <NavLink href="/teaching" label={t("teaching")} />
-            <NavLink href="/team" label={t("team")} />
-          </div>
-        </div>
+        <NavItemsList className={`${isOpen ? "block" : "hidden"} sm:hidden`} />
       </nav>
     </header>
+  );
+}
+
+function NavItemsList({ className }: { className?: string }) {
+  const t = useTranslations("Nav");
+  return (
+    <div
+      className={`sm:block sm:items-center order-3 sm:order-2 w-full sm:w-auto ${className}`}
+      id="navbar-default"
+    >
+      <div className="flex flex-col sm:flex-row sm:gap-2">
+        <NavLink href="/news" label={t("news")} />
+        <NavLink href="/projects" label={t("projects")} />
+        <NavLink href="/teaching" label={t("teaching")} />
+        <NavLink href="/team" label={t("team")} />
+      </div>
+    </div>
   );
 }

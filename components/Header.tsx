@@ -72,6 +72,7 @@ function NavItemsList({ className }: { className?: string }) {
         <NavLink href="/projects" label={t("projects")} />
         <NavLink href="/teaching" label={t("teaching")} />
         <NavLink href="/team" label={t("team")} />
+        <NavLink href="/contact" label={t("contact")} />
       </div>
     </div>
   );

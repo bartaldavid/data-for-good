@@ -11,26 +11,20 @@ async function ProfilePicture({
   name: string;
   size?: number;
 }) {
-  if (!imageId) {
-    return (
-      <Image
-        src={fallbackPicture}
-        alt={name}
-        className="rounded-full"
-        width={size}
-        height={size}
-      />
-    );
-  }
+  let src = fallbackPicture;
 
-  const image = await getAsset(imageId);
-  const src = image.fields.file?.url ? "https:" + image.fields.file?.url : "";
+  if (imageId) {
+    const image = await getAsset(imageId);
+    src = image.fields.file?.url
+      ? "https:" + image.fields.file?.url
+      : fallbackPicture;
+  }
 
   return (
     <Image
       src={src}
       alt={name}
-      className="rounded-full"
+      className="rounded-full aspect-square object-cover"
       width={size}
       height={size}
     />

@@ -1,4 +1,4 @@
-import LinkWithRef from "next-intl/link";
+import { Link } from "@/i18n";
 import FormattedDate from "./FormattedDate";
 
 function CollectionItem({
@@ -13,7 +13,7 @@ function CollectionItem({
   href: string;
 }) {
   return (
-    <LinkWithRef
+    <Link
       className="bg-white rounded-lg p-4 shadow-sm w-full md:w-1/3 hover:shadow-md"
       href={href}
     >
@@ -24,7 +24,7 @@ function CollectionItem({
           className="text-sm font-light text-slate-600"
         />
       )}
-    </LinkWithRef>
+    </Link>
   );
 }
 

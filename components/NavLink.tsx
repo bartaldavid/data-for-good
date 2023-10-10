@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next-intl/link";
+import { Link } from "@/i18n";
 import { usePathname } from "next/navigation";
 
 export function NavLink({ href, label }: { href: string; label: string }) {

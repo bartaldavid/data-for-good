@@ -3,7 +3,6 @@ import CollectionPage from "@/components/CollectionPage";
 import { getProjects } from "@/lib/contentful/setup";
 import { ResolvingMetadata } from "next";
 import { useLocale } from "next-intl";
-import LinkWithRef from "next-intl/link";
 
 export async function generateMetadata(
   { params }: { params: { locale: string } },

@@ -5,7 +5,6 @@ import { getResearchers, getSiteDetails } from "@/lib/contentful/setup";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { ResolvingMetadata } from "next";
 import { useLocale } from "next-intl";
-import LinkWithRef from "next-intl/link";
 
 export async function generateMetadata(
   { params }: { params: { locale: string } },

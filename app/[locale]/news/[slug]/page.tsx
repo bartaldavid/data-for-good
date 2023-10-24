@@ -1,4 +1,5 @@
 import BlogPageLayout from "@/components/BlogPage";
+import DocumentWithImages from "@/components/DocumentWithImages";
 import { getNews } from "@/lib/contentful/setup";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
@@ -16,7 +17,7 @@ async function NewsPage({
         page.fields.subtitle && documentToReactComponents(page.fields.subtitle)
       }
     >
-      {page.fields.content && documentToReactComponents(page.fields.content)}
+      <DocumentWithImages document={page.fields.content} />
     </BlogPageLayout>
   );
 }

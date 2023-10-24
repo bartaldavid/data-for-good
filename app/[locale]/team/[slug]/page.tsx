@@ -1,8 +1,8 @@
+import DocumentWithImages from "@/components/DocumentWithImages";
 import ProfilePicture from "@/components/ProfilePicture";
 import { getAsset, getResearchers } from "@/lib/contentful/setup";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { useLocale } from "next-intl";
-import Image from "next/image";
 
 export default async function ResearcherPage({
   params,
@@ -44,8 +44,7 @@ export default async function ResearcherPage({
           </a>
         </div> */}
         <div className="mt-8 max-w-prose">
-          {researcher.fields.bio &&
-            documentToReactComponents(researcher.fields.bio)}
+          <DocumentWithImages document={researcher.fields.bio} />
         </div>
       </div>
     </div>

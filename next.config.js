@@ -17,4 +17,11 @@ module.exports = withNextIntl({
       },
     ],
   },
+  experimental: {
+    turbo: {
+      resolveAlias: {
+        "next-intl/config": "./i18n.ts",
+      },
+    },
+  },
 });

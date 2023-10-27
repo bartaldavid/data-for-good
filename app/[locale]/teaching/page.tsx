@@ -1,6 +1,6 @@
 import CollectionItem from "@/components/CollectionItem";
 import CollectionPage from "@/components/CollectionPage";
-import { getProjects } from "@/lib/contentful/setup";
+import { getTeachingPage } from "@/lib/contentful/setup";
 import { ResolvingMetadata } from "next";
 import { useLocale } from "next-intl";
 
@@ -8,23 +8,23 @@ export async function generateMetadata(
   { params }: { params: { locale: string } },
   parent: ResolvingMetadata
 ) {
-  const title = params?.locale === "hu" ? "Projektek" : "Projects";
+  const title = params?.locale === "hu" ? "Oktatás" : "Teaching";
   const parentTitle = (await parent).title?.absolute || "";
   return { title: `${title} | ${parentTitle}` };
 }
 
 async function ProjectsPage() {
   const locale = useLocale();
-  const projects = await getProjects(locale);
+  const teachingEntries = await getTeachingPage(locale);
 
   return (
-    <CollectionPage titleId="projects">
-      {projects.items.map((project) => (
+    <CollectionPage titleId="teaching">
+      {teachingEntries.items.map((teachingEntry) => (
         <CollectionItem
-          title={project.fields.title}
-          date={project.fields.date}
-          key={project.fields.slug}
-          href={`/projects/${project.fields.slug}`}
+          title={teachingEntry.fields.title}
+          date={teachingEntry.fields.publishedAt}
+          key={teachingEntry.fields.slug}
+          href={`/teaching/${teachingEntry.fields.slug}`}
         />
       ))}
     </CollectionPage>

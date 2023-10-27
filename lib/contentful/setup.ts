@@ -1,5 +1,11 @@
 import { type EntryFieldTypes, createClient } from "contentful";
-import { AboutUsEntry, NewsEntry, ProjectsEntry, Researchers } from "./types";
+import {
+  AboutUsEntry,
+  NewsEntry,
+  ProjectsEntry,
+  Researchers,
+  TypeTeachingFields,
+} from "./types";
 import { Locale } from "@/constants";
 
 const contentfulClient = createClient({
@@ -42,6 +48,14 @@ export async function getProjects(lang: string, slug?: string) {
 export async function getNews(lang: string, slug?: string) {
   return await contentfulClient.getEntries<NewsEntry>({
     content_type: "news",
+    locale: lang,
+    ...(slug && { "fields.slug": slug }),
+  });
+}
+
+export async function getTeachingPage(lang: string, slug?: string) {
+  return await contentfulClient.getEntries<TypeTeachingFields>({
+    content_type: "teaching",
     locale: lang,
     ...(slug && { "fields.slug": slug }),
   });

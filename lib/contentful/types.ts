@@ -40,3 +40,14 @@ export interface NewsEntry {
     slug: EntryFieldTypes.Text;
   };
 }
+
+export interface TypeTeachingFields {
+  contentTypeId: "teaching";
+  fields: {
+    title: EntryFieldTypes.Symbol;
+    publishedAt?: EntryFieldTypes.Date;
+    content?: EntryFieldTypes.RichText;
+    subtitle?: EntryFieldTypes.RichText;
+    slug: EntryFieldTypes.Symbol;
+  };
+}

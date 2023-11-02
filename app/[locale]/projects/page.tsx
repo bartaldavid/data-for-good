@@ -1,7 +1,6 @@
 import CollectionItem from "@/components/CollectionItem";
 import CollectionPage from "@/components/CollectionPage";
 import { getProjects } from "@/lib/contentful/setup";
-import { getTeachingPage } from "@/lib/contentful/setup";
 import { ResolvingMetadata } from "next";
 import { useLocale } from "next-intl";
 
@@ -14,7 +13,7 @@ export async function generateMetadata(
   return { title: `${title} | ${parentTitle}` };
 }
 
-async function ProjectsPage() {
+export default async function ProjectsPage() {
   const locale = useLocale();
   const projects = await getProjects(locale);
 

@@ -13,8 +13,7 @@ export default function LocaleLayout({
   params: { locale: string };
 }) {
   // Validate that the incoming `locale` parameter is valid
-  const isValidLocale = locales.some((cur) => cur === locale);
-  if (!isValidLocale) notFound();
+  if (!locales.includes(locale as any)) notFound();
 
   const messages = useMessages();
 

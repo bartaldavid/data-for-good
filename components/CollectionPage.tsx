@@ -1,6 +1,7 @@
 import { type MessageKeys, useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
-function CollectionPage({
+async function CollectionPage({
   children,
   titleId,
 }: {
@@ -17,7 +18,7 @@ function CollectionPage({
   >;
   children?: React.ReactNode;
 }) {
-  const t = useTranslations("Nav");
+  const t = await getTranslations("Nav");
   return (
     <main>
       <div className="flex gap-4 flex-col items-center">

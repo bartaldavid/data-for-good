@@ -1,5 +1,3 @@
-import Header from "@/components/Header";
-import { useLocale } from "next-intl";
 import Link from "next/link";
 
 function NotFound() {

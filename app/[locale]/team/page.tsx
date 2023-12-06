@@ -1,10 +1,8 @@
 import CollectionPage from "@/components/CollectionPage";
-import ProfilePicture from "@/components/ProfilePicture";
 import ResearcherCard from "@/components/ResearcherCard";
 import { getResearchers, getSiteDetails } from "@/lib/contentful/setup";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { ResolvingMetadata } from "next";
-import { useLocale } from "next-intl";
 
 export async function generateMetadata(
   { params }: { params: { locale: string } },
@@ -15,8 +13,11 @@ export async function generateMetadata(
   return { title: `${title} | ${parentTitle}` };
 }
 
-async function TeamPage() {
-  const locale = useLocale();
+async function TeamPage({
+  params: { locale },
+}: {
+  params: { locale: string };
+}) {
   const researchers = await getResearchers(locale);
   const {
     fields: { longDescription },

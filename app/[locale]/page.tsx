@@ -1,10 +1,9 @@
 import { getSiteDetails } from "@/lib/contentful/setup";
-import { useLocale, useTranslations } from "next-intl";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { Locale } from "@/constants";
 import Image from "next/image";
 import Logo from "@/public/logo/08-crop.svg";
 import { Link } from "@/i18n";
+import { getTranslations } from "next-intl/server";
 
 export default async function Index({
   params,
@@ -12,6 +11,7 @@ export default async function Index({
   params: { locale: string };
 }) {
   const data = await getSiteDetails(params.locale);
+  const t = await getTranslations("Index");
 
   return (
     <>
@@ -21,18 +21,10 @@ export default async function Index({
           {data.fields.shortDescription &&
             documentToReactComponents(data.fields.shortDescription)}
         </div>
-        <GoToLongerDescriptionLink />
+        <Link href="/team" className="text-blue-500 hover:text-blue-600">
+          {t("goToLongerDescription")}
+        </Link>
       </article>
     </>
-  );
-}
-
-function GoToLongerDescriptionLink() {
-  const t = useTranslations("Index");
-
-  return (
-    <Link href="/team" className="text-blue-500 hover:text-blue-600">
-      {t("goToLongerDescription")}
-    </Link>
   );
 }

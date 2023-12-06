@@ -13,9 +13,8 @@ export async function generateMetadata(
   return { title: `${title} | ${parentTitle}` };
 }
 
-async function ProjectsPage() {
-  const locale = useLocale();
-  const teachingEntries = await getTeachingPage(locale);
+async function ProjectsPage({ params }: { params: { locale: string } }) {
+  const teachingEntries = await getTeachingPage(params.locale);
 
   return (
     <CollectionPage titleId="teaching">

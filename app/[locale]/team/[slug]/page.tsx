@@ -1,16 +1,15 @@
 import DocumentWithImages from "@/components/DocumentWithImages";
 import ProfilePicture from "@/components/ProfilePicture";
-import { getAsset, getResearchers } from "@/lib/contentful/setup";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { useLocale } from "next-intl";
+import { getResearchers } from "@/lib/contentful/setup";
 
 export default async function ResearcherPage({
   params,
 }: {
-  params: { slug: string };
+  params: { locale: string; slug: string };
 }) {
-  const locale = useLocale();
-  const researcher = (await getResearchers(locale, params.slug))["items"][0];
+  const researcher = (await getResearchers(params.locale, params.slug))[
+    "items"
+  ][0];
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">

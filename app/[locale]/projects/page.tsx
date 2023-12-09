@@ -2,7 +2,6 @@ import CollectionItem from "@/components/CollectionItem";
 import CollectionPage from "@/components/CollectionPage";
 import { getProjects } from "@/lib/contentful/setup";
 import { ResolvingMetadata } from "next";
-import { useLocale } from "next-intl";
 
 export async function generateMetadata(
   { params }: { params: { locale: string } },
@@ -13,7 +12,11 @@ export async function generateMetadata(
   return { title: `${title} | ${parentTitle}` };
 }
 
-export default async function ProjectsPage({params}: {params: {locale: string}}) {
+export default async function ProjectsPage({
+  params,
+}: {
+  params: { locale: string };
+}) {
   const projects = await getProjects(params.locale);
 
   return (

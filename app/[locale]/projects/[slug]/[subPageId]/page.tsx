@@ -6,7 +6,7 @@ export default function MapPage({
   params: { locale: string; slug: string; subPageId: string };
 }) {
   if (
-    params.subPageId !== "2018MEJ" &&
+    params.subPageId !== "2018MEJ" ||
     !["eletvegi-ellatas", "end-of-lifecare"].includes(params.slug)
   ) {
     notFound();

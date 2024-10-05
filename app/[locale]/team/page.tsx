@@ -27,8 +27,8 @@ async function TeamPage({
       <div className="prose max-w-prose">
         {longDescription && documentToReactComponents(longDescription)}
       </div>
-      <h1 className="text-2xl">Kutatók</h1>
-      <div className="flex flex-row flex-wrap gap-2 max-w-2xl">
+      <h1 className="text-2xl mt-6 font-medium">Kutatók</h1>
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-prose">
         {researchers.items.map((researcher) => (
           <ResearcherCard
             href={`/team/${researcher.fields.slug}`}

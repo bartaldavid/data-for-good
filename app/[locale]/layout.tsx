@@ -2,8 +2,7 @@ import Header from "@/components/Header";
 import { notFound } from "next/navigation";
 import "../globals.css";
 import { NextIntlClientProvider, useMessages } from "next-intl";
-
-const locales = ["en", "hu"];
+import { LOCALES } from "@/constants";
 
 export default function LocaleLayout({
   children,
@@ -13,7 +12,7 @@ export default function LocaleLayout({
   params: { locale: string };
 }) {
   // Validate that the incoming `locale` parameter is valid
-  if (!locales.includes(locale as any)) notFound();
+  if (!LOCALES.includes(locale as any) && locale !== 'favicon.ico') notFound();
 
   const messages = useMessages();
 

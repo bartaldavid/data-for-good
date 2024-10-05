@@ -21,7 +21,7 @@ async function CollectionPage({
   const t = await getTranslations("Nav");
   return (
     <main>
-      <div className="flex gap-4 flex-col items-center">
+      <div className="flex gap-4 flex-col items-center px-2">
         <h1 className="text-4xl mt-10">{t(titleId)}</h1>
         {children}
       </div>

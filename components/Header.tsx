@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import LanguageSwitcher from "./LanguageSwitcher";
+// import LanguageSwitcher from "./LanguageSwitcher";
 import { NavLink } from "./NavLink";
 
 import Image from "next/image";
@@ -28,7 +28,7 @@ export default function Header() {
         </div>
 
         <div className="flex flex-row gap-1 order-2 sm:order-3">
-          <LanguageSwitcher />
+          {/* <LanguageSwitcher /> */}
           <button
             type="button"
             className="inline-flex sm:hidden hover:bg-gray-100 p-2 rounded-md "

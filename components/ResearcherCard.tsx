@@ -12,7 +12,7 @@ export default function ResearcherCard({
 }) {
   return (
     <Link href={href}>
-      <div className="flex justify-evenly flex-col items-center flex-grow-0 flex-shrink rounded bg-slate-100 hover:shadow hover:bg-slate-50 transition-all p-4">
+      <div className="flex justify-evenly flex-col items-center flex-grow-0 flex-shrink rounded bg-slate-100 hover:shadow hover:bg-slate-50 transition-all p-4 h-full">
         <ProfilePicture imageId={imageId} name={name} />
         <h3 className=" font-semibold text-center text-sm">{name}</h3>
       </div>

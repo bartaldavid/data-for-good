@@ -4,10 +4,11 @@ import { getNews } from "@/lib/contentful/setup";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
 async function NewsPage({
-  params: { locale, slug },
+  params,
 }: {
-  params: { locale: string; slug: string };
+  params: Promise<{ locale: string; slug: string }>;
 }) {
+  const { locale, slug } = await params;
   const page = (await getNews(locale, slug))["items"][0];
   return (
     <BlogPageLayout

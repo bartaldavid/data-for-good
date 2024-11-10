@@ -4,19 +4,22 @@ import { getNews } from "@/lib/contentful/setup";
 import { ResolvingMetadata } from "next";
 
 export async function generateMetadata(
-  { params }: { params: { locale: string } },
+  { params }: { params: Promise<{ locale: string }> },
   parent: ResolvingMetadata
 ) {
-  const title = params?.locale === "hu" ? "Hírek" : "News";
+  const locale = (await params).locale;
+
+  const title = locale === "hu" ? "Hírek" : "News";
   const parentTitle = (await parent).title?.absolute || "";
   return { title: `${title} | ${parentTitle}` };
 }
 
 async function NewsCollectionPage({
-  params: { locale },
+  params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
   const { items } = await getNews(locale);
   return (
     <CollectionPage titleId="news">

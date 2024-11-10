@@ -5,16 +5,22 @@ import { ResolvingMetadata } from "next";
 import { useLocale } from "next-intl";
 
 export async function generateMetadata(
-  { params }: { params: { locale: string } },
+  { params }: { params: Promise<{ locale: string }> },
   parent: ResolvingMetadata
 ) {
-  const title = params?.locale === "hu" ? "Oktatás" : "Teaching";
+  const { locale } = await params;
+  const title = locale === "hu" ? "Oktatás" : "Teaching";
   const parentTitle = (await parent).title?.absolute || "";
   return { title: `${title} | ${parentTitle}` };
 }
 
-async function ProjectsPage({ params }: { params: { locale: string } }) {
-  const teachingEntries = await getTeachingPage(params.locale);
+async function ProjectsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const teachingEntries = await getTeachingPage(locale);
 
   return (
     <CollectionPage titleId="teaching">

@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname, useRouter } from "@/i18n";
+import { routing, usePathname, useRouter } from "@/i18n/routing";
 import { useParams } from "next/navigation";
 
 export default function LanguageSwitcher() {
@@ -10,7 +10,7 @@ export default function LanguageSwitcher() {
 
   return (
     <div className="flex gap-1">
-      {["en", "hu"].map((lang) => (
+      {routing.locales.map((lang) => (
         <button
           key={lang}
           onClick={() => router.replace(pathname, { locale: lang })}

@@ -7,6 +7,7 @@ import { NavLink } from "./NavLink";
 import Image from "next/image";
 import logo from "@/public/logo/08-crop.svg";
 import { usePathname } from "next/navigation";
+import { Link } from "@/i18n/routing";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,9 +22,9 @@ export default function Header() {
       <nav className="flex max-w-screen-xl mx-auto flex-wrap justify-between p-2 w-full">
         {/* <div className="flex items-center w-full justify-between"> */}
         <div className="flex gap-4">
-          <a href="/" className="order-1 self-center">
+          <Link href="/" className="order-1 self-center">
             <Image src={logo} alt="logo" height={30} />
-          </a>
+          </Link>
           <NavItemsList className="hidden sm:flex" />
         </div>
 

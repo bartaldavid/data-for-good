@@ -5,11 +5,11 @@ import { getResearchers } from "@/lib/contentful/setup";
 export default async function ResearcherPage({
   params,
 }: {
-  params: { locale: string; slug: string };
+  params: Promise<{ locale: string; slug: string }>;
 }) {
-  const researcher = (await getResearchers(params.locale, params.slug))[
-    "items"
-  ][0];
+  const { locale, slug } = await params;
+
+  const researcher = (await getResearchers(locale, slug))["items"][0];
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">

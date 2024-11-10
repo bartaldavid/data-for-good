@@ -5,19 +5,18 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { ResolvingMetadata } from "next";
 
 export async function generateMetadata(
-  { params }: { params: { locale: string } },
+  { params }: { params: Promise<{ locale: string }> },
   parent: ResolvingMetadata
 ) {
-  const title = params?.locale === "hu" ? "Rólunk" : "Team";
+  const { locale } = await params;
+
+  const title = locale === "hu" ? "Rólunk" : "Team";
   const parentTitle = (await parent).title?.absolute || "";
   return { title: `${title} | ${parentTitle}` };
 }
 
-async function TeamPage({
-  params: { locale },
-}: {
-  params: { locale: string };
-}) {
+async function TeamPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
   const researchers = await getResearchers(locale);
   const {
     fields: { longDescription },

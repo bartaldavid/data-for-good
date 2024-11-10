@@ -2,15 +2,17 @@ import { getSiteDetails } from "@/lib/contentful/setup";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Image from "next/image";
 import Logo from "@/public/logo/08-crop.svg";
-import { Link } from "@/i18n";
+import { Link } from "@/i18n/routing";
 import { getTranslations } from "next-intl/server";
 
 export default async function Index({
   params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
-  const data = await getSiteDetails(params.locale);
+  const locale = (await params).locale;
+
+  const data = await getSiteDetails(locale);
   const t = await getTranslations("Index");
 
   return (

@@ -6,9 +6,10 @@ import { useLocale } from "next-intl";
 async function SingleProjectPage({
   params,
 }: {
-  params: { locale: string; slug: string };
+  params: Promise<{ locale: string; slug: string }>;
 }) {
-  const project = (await getProjects(params.locale, params.slug))["items"][0];
+  const { locale, slug } = await params;
+  const project = (await getProjects(locale, slug))["items"][0];
   return (
     <BlogPageLayout title={project.fields.title} pubDate={project.fields.date}>
       <DocumentWithImages document={project.fields.content} />

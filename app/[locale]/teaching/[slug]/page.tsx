@@ -6,11 +6,11 @@ import { useLocale } from "next-intl";
 async function SingleProjectPage({
   params,
 }: {
-  params: { locale: string; slug: string };
+  params: Promise<{ locale: string; slug: string }>;
 }) {
-  const project = (await getTeachingPage(params.locale, params.slug))[
-    "items"
-  ][0];
+  const { locale, slug } = await params;
+
+  const project = (await getTeachingPage(locale, slug))["items"][0];
   return (
     <BlogPageLayout
       title={project.fields.title}

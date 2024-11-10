@@ -4,10 +4,11 @@ import { getProjects } from "@/lib/contentful/setup";
 import { ResolvingMetadata } from "next";
 
 export async function generateMetadata(
-  { params }: { params: { locale: string } },
+  { params }: { params: Promise<{ locale: string }> },
   parent: ResolvingMetadata
 ) {
-  const title = params?.locale === "hu" ? "Projektek" : "Projects";
+  const { locale } = await params;
+  const title = locale === "hu" ? "Projektek" : "Projects";
   const parentTitle = (await parent).title?.absolute || "";
   return { title: `${title} | ${parentTitle}` };
 }
@@ -15,9 +16,10 @@ export async function generateMetadata(
 export default async function ProjectsPage({
   params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
-  const projects = await getProjects(params.locale);
+  const { locale } = await params;
+  const projects = await getProjects(locale);
 
   return (
     <CollectionPage titleId="projects">

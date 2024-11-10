@@ -3,10 +3,11 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { getTranslations } from "next-intl/server";
 
 export default async function ContactPage({
-  params: { locale },
+  params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const locale = (await params).locale;
   const t = await getTranslations("Nav");
   const siteData = await getSiteDetails(locale);
 

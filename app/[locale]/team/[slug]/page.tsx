@@ -1,15 +1,16 @@
 import DocumentWithImages from "@/components/DocumentWithImages";
 import ProfilePicture from "@/components/ProfilePicture";
 import { getResearchers } from "@/lib/contentful/setup";
+import { getLocale } from "next-intl/server";
 
 export default async function ResearcherPage({
   params,
 }: {
-  params: { locale: string; slug: string };
+  params: Promise<{ locale: string; slug: string }>;
 }) {
-  const researcher = (await getResearchers(params.locale, params.slug))[
-    "items"
-  ][0];
+  const { slug } = await params;
+  const locale = await getLocale();
+  const researcher = (await getResearchers(locale, slug))["items"][0];
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">

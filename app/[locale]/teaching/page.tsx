@@ -3,18 +3,18 @@ import CollectionPage from "@/components/CollectionPage";
 import { getTeachingPage } from "@/lib/contentful/setup";
 import { ResolvingMetadata } from "next";
 import { useLocale } from "next-intl";
+import { getLocale } from "next-intl/server";
 
-export async function generateMetadata(
-  { params }: { params: { locale: string } },
-  parent: ResolvingMetadata
-) {
-  const title = params?.locale === "hu" ? "Oktatás" : "Teaching";
+export async function generateMetadata({}, parent: ResolvingMetadata) {
+  const locale = await getLocale();
+  const title = locale === "hu" ? "Oktatás" : "Teaching";
   const parentTitle = (await parent).title?.absolute || "";
   return { title: `${title} | ${parentTitle}` };
 }
 
-async function ProjectsPage({ params }: { params: { locale: string } }) {
-  const teachingEntries = await getTeachingPage(params.locale);
+async function ProjectsPage() {
+  const locale = await getLocale();
+  const teachingEntries = await getTeachingPage(locale);
 
   return (
     <CollectionPage titleId="teaching">

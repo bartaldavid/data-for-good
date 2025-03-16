@@ -2,15 +2,16 @@ import BlogPageLayout from "@/components/BlogPage";
 import DocumentWithImages from "@/components/DocumentWithImages";
 import { getTeachingPage } from "@/lib/contentful/setup";
 import { useLocale } from "next-intl";
+import { getLocale } from "next-intl/server";
 
 async function SingleProjectPage({
   params,
 }: {
-  params: { locale: string; slug: string };
+  params: Promise<{ locale: string; slug: string }>;
 }) {
-  const project = (await getTeachingPage(params.locale, params.slug))[
-    "items"
-  ][0];
+  const locale = await getLocale();
+  const { slug } = await params;
+  const project = (await getTeachingPage(locale, slug))["items"][0];
   return (
     <BlogPageLayout
       title={project.fields.title}

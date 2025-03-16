@@ -1,13 +1,14 @@
 import { notFound } from "next/navigation";
 
-export default function MapPage({
+export default async function MapPage({
   params,
 }: {
-  params: { locale: string; slug: string; subPageId: string };
+  params: Promise<{ locale: string; slug: string; subPageId: string }>;
 }) {
+  const { slug, subPageId } = await params;
   if (
-    params.subPageId !== "2018MEJ" ||
-    !["eletvegi-ellatas", "end-of-lifecare"].includes(params.slug)
+    subPageId !== "2018MEJ" ||
+    !["eletvegi-ellatas", "end-of-lifecare"].includes(slug)
   ) {
     notFound();
   }

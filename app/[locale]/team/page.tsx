@@ -3,21 +3,17 @@ import ResearcherCard from "@/components/ResearcherCard";
 import { getResearchers, getSiteDetails } from "@/lib/contentful/setup";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { ResolvingMetadata } from "next";
+import { getLocale } from "next-intl/server";
 
-export async function generateMetadata(
-  { params }: { params: { locale: string } },
-  parent: ResolvingMetadata
-) {
-  const title = params?.locale === "hu" ? "Rólunk" : "Team";
+export async function generateMetadata({}, parent: ResolvingMetadata) {
+  const locale = await getLocale();
+  const title = locale === "hu" ? "Rólunk" : "Team";
   const parentTitle = (await parent).title?.absolute || "";
   return { title: `${title} | ${parentTitle}` };
 }
 
-async function TeamPage({
-  params: { locale },
-}: {
-  params: { locale: string };
-}) {
+async function TeamPage() {
+  const locale = await getLocale();
   const researchers = await getResearchers(locale);
   const {
     fields: { longDescription },

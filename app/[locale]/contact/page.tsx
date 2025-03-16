@@ -1,12 +1,9 @@
 import { getSiteDetails } from "@/lib/contentful/setup";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 
-export default async function ContactPage({
-  params: { locale },
-}: {
-  params: { locale: string };
-}) {
+export default async function ContactPage() {
+  const locale = await getLocale();
   const t = await getTranslations("Nav");
   const siteData = await getSiteDetails(locale);
 

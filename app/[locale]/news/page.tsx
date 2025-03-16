@@ -2,21 +2,17 @@ import CollectionItem from "@/components/CollectionItem";
 import CollectionPage from "@/components/CollectionPage";
 import { getNews } from "@/lib/contentful/setup";
 import { ResolvingMetadata } from "next";
+import { getLocale } from "next-intl/server";
 
-export async function generateMetadata(
-  { params }: { params: { locale: string } },
-  parent: ResolvingMetadata
-) {
-  const title = params?.locale === "hu" ? "Hírek" : "News";
+export async function generateMetadata({}, parent: ResolvingMetadata) {
+  const locale = await getLocale();
+  const title = locale === "hu" ? "Hírek" : "News";
   const parentTitle = (await parent).title?.absolute || "";
   return { title: `${title} | ${parentTitle}` };
 }
 
-async function NewsCollectionPage({
-  params: { locale },
-}: {
-  params: { locale: string };
-}) {
+async function NewsCollectionPage() {
+  const locale = await getLocale();
   const { items } = await getNews(locale);
   return (
     <CollectionPage titleId="news">

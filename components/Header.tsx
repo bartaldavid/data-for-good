@@ -7,6 +7,7 @@ import { NavLink } from "./NavLink";
 import Image from "next/image";
 import logo from "@/public/logo/08-crop.svg";
 import { usePathname } from "next/navigation";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,7 +29,7 @@ export default function Header() {
         </div>
 
         <div className="flex flex-row gap-1 order-2 sm:order-3">
-          {/* <LanguageSwitcher /> */}
+          <LanguageSwitcher />
           <button
             type="button"
             className="inline-flex sm:hidden hover:bg-gray-100 p-2 rounded-md "

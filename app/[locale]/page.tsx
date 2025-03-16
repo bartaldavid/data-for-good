@@ -2,7 +2,7 @@ import { getSiteDetails } from "@/lib/contentful/setup";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Image from "next/image";
 import Logo from "@/public/logo/08-crop.svg";
-import { Link } from "@/i18n";
+import { Link } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
 
 export default async function Index({

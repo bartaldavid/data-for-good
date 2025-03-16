@@ -1,4 +1,4 @@
-import { Link } from "@/i18n";
+import { Link } from "@/i18n/navigation";
 import FormattedDate from "./FormattedDate";
 
 function CollectionItem({

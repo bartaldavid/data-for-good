@@ -1,20 +1,21 @@
 "use client";
 
-import { usePathname, useRouter } from "@/i18n";
+import { usePathname, useRouter } from "@/i18n/navigation";
+import { routing } from "@/i18n/routing";
 import { useParams } from "next/navigation";
 
 export default function LanguageSwitcher() {
   const router = useRouter();
   const pathname = usePathname();
-  const { locale } = useParams<{ locale: string }>();
+  const params = useParams<{ locale: string }>();
 
   return (
     <div className="flex gap-1">
-      {["en", "hu"].map((lang) => (
+      {routing.locales.map((lang) => (
         <button
           key={lang}
           onClick={() => router.replace(pathname, { locale: lang })}
-          className={locale === lang ? "font-semibold" : ""}
+          className={params.locale === lang ? "font-semibold" : ""}
         >
           {lang.toLocaleUpperCase()}
         </button>

@@ -4,6 +4,7 @@ import {
 } from "@contentful/rich-text-react-renderer";
 import { BLOCKS, type Document } from "@contentful/rich-text-types";
 import Image from "next/image";
+
 function DocumentWithImages({
   document,
   options,
